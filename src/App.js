@@ -66,7 +66,7 @@ export default class App extends Component {
         this.setState({todoData : newTodoData})
     }
 
-    //테스트
+    //
 
     render() {
         return (
