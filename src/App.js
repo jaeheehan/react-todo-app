@@ -23,7 +23,7 @@ export default function App() {
         setTodoData( (prev) => [...prev, newTodo]);
         setValue("");
     }
-    /* test 12314 */
+    /* test 12 */
     return (
       <div className="container">
           <div className="todoBlock">
