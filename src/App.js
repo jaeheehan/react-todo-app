@@ -3,11 +3,14 @@ import "./App.css";
 import Lists from "./components/Lists";
 import Form from "./components/Form";
 
+const initialTodoData = localStorage.getItem("todoData") ? JSON.parse(localStorage.getItem("todoData")) : [];
+
+
 export default function App() {
 
     console.log('App Component')
 
-    const [todoData, setTodoData] = useState([]);
+    const [todoData, setTodoData] = useState(initialTodoData);
     const [value, setValue] = useState("");
 
 
@@ -21,7 +24,13 @@ export default function App() {
         }
 
         setTodoData( (prev) => [...prev, newTodo]);
+        localStorage.setItem('todoData', JSON.stringify([...todoData, newTodo]));
         setValue("");
+    }
+
+    const handleRemoveClick = () =>{
+        setTodoData([]);
+        localStorage.setItem('todoData', JSON.stringify([]));
     }
     /* test 7*/
     return (
@@ -29,6 +38,7 @@ export default function App() {
           <div className="w-full p-6 m-4 bg-white rounded shadow lg:w-3/4 lg:max-w-lg">
               <div className="flex justify-between mb-3">
                   <h1>할 일 목록</h1>
+                  <button onClick={handleRemoveClick}>Delete All</button>
               </div>
               <Lists todoData={todoData} setTodoData={setTodoData}/>
 
